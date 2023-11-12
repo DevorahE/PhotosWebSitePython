@@ -1,0 +1,42 @@
+{% extends 'Basic.html' %}
+
+{% block title %}
+  Create new pictures
+{% endblock %}
+
+{% block content %}
+  <h1 style="text-align: center; color:orange;">Create new pictures</h1>
+  <br>
+
+  <form method="POST" action="{{ url_for('Create_pictures') }}" enctype="multipart/form-data"
+  style="text-align: center;">
+    {{ form.hidden_tag() }}
+    <div>
+      {{ form.file.label }}{{ form.file() }}
+    </div><br>
+
+    {% for option in form.options %}
+      <div>
+        {{ option(checked='checked') }}
+        {{ option.label }}
+      </div>
+    <br>
+    {% endfor %}
+
+    <div>
+      {{ form.submit() }}
+    </div>
+  </form>
+
+  <br><br>
+
+  {% if img_url and new_img_url %}
+    <br>
+    <img src="{{ url_for('static', filename=img_url) }}" alt="img" style="width:20%; height:20%; border-radius: 8px;">
+    <img src="{{ url_for('static', filename=new_img_url) }}" alt="new_img" style="width:20%; height:20%; border-radius: 8px;">
+  {% endif %}
+  {% if mask_img %}
+    <img alt="mask_img" style="width:20%; height:20%; border-radius: 8px;" src="{{ url_for('static', filename=mask_img ) }}">
+  {% endif %}
+
+{% endblock %}

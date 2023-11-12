@@ -1,0 +1,41 @@
+{% extends 'Basic.html' %}
+{% block title %}
+  Register
+{% endblock %}
+{% block content %}
+
+  <H1  style="text-align: center; color:orange;">Create a account</H1>
+<br>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div  class="alert alert-warning">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+  <form method="POST" action="{{url_for('Register_page')}}"  style="text-align: center;">
+  {{ form.hidden_tag() }}
+    <div>
+      {{form.userName.label}}{{form.userName()}}
+    </div><br>
+     <div>
+         {{form.firstName.label}}{{form.firstName()}}
+    </div><br>
+     <div>
+         {{form.lastName.label}}{{form.lastName()}}
+    </div><br>
+     <div>
+         {{form.email_address.label}}{{form.email_address()}}
+    </div><br>
+       <div>
+         {{form.password.label}}{{form.password()}}
+    </div><br>
+    <div>
+         {{form.password_valid.label}}{{form.password_valid()}}
+    </div><br>
+      <div>
+         {{form.submit()}}
+    </div><br>
+  </form>
+{% endblock %}

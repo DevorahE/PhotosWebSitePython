@@ -1,0 +1,16 @@
+{% extends 'Basic.html' %}
+
+{% block title %}
+  Gallery
+{% endblock %}
+
+{% block content %}
+  <h1  style="text-align: center; color:orange;">Gallery</h1>
+  <br>
+
+  {% for picture in pictures %}
+    <div class="card-body" style="text-align: center; border-radius: 8px;">
+      <img src="{{ url_for('static', filename=picture.url_picture) }}" class="rounded" style="width:50%; height:50%">
+    </div>
+  {% endfor %}
+{% endblock %}

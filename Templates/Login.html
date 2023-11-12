@@ -1,0 +1,28 @@
+{% extends 'Basic.html' %}
+{% block title %}
+  Login
+{% endblock %}
+{% block content %}
+ {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div  class="alert alert-warning">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+  <H1  style="text-align: center; color:orange;">Log in</H1>
+<br>
+  <form method="POST" action="{{url_for('My_login')}}"  style="text-align: center;">
+  {{ form.hidden_tag() }}
+    <div>
+      {{form.userName.label}}{{form.userName()}}
+    </div><br>
+
+       <div>
+         {{form.password.label}}{{form.password()}}
+    </div><br>
+      <div>
+         {{form.submit()}}
+    </div>
+  </form>
+{% endblock %}
